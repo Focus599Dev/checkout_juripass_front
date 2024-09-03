@@ -88,4 +88,10 @@ export default class PlansService {
         localStorage.setItem(this.getUUIDLocalStorage(), JSON.stringify(this)); 
 
     }
+
+    public deleteLocalStorage = () => {
+
+        localStorage.removeItem(this.getUUIDLocalStorage());
+
+    }
 }

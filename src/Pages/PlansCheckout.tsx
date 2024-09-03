@@ -4,6 +4,7 @@ import { useState } from 'react';
 import PageLoader  from '../Components/PageLoader';
 import { Payment, initMercadoPago } from '@mercadopago/sdk-react'
 import { PlanCard } from '../Components/PlanCard';
+import { ToastContainer, toast } from 'react-toastify';
 
 const planService = new PlansService();
 
@@ -30,9 +31,6 @@ export const PlansCheckout = () => {
     const customization = {
         paymentMethods: {
             maxInstallments: 10,
-            ticket: ["all"],
-            atm: ["all"],
-            debitCard: ["all"],
             bankTransfer: ["all"],
             creditCard: ["all"],
         }
@@ -56,20 +54,53 @@ export const PlansCheckout = () => {
 
         data.servicePlan = planService;
 
-        fetch(process.env.REACT_APP_BACK_URL + "/process_payment", {
+        const myHeaders = new Headers();
+
+        myHeaders.append("Content-Type", "application/json");
+
+        myHeaders.append("Accept", "application/json");
+
+        fetch(process.env.REACT_APP_BACK_URL + "/process-payment", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            mode: 'cors',
+            headers:myHeaders,
             body: JSON.stringify(data),
         }).then((response) => {
             return response.json();
         }).then((data) => {
             setLoading(false);
 
-            console.log(data);
+            if (data.status == 202) {
+
+                toast.success("Seu QR Code foi gerado com sucesso, você sera redirecionado para a tela de pagamento");
+
+                setTimeout(() => {
+                    window.open(data.redirect, "_blank");
+
+                    planService.deleteLocalStorage();
+
+                    navigate("/planos/checkout/payment_sucess");
+
+                }, 2000 );
+
+            } else if (data.status == 201) {
+
+                toast.success("Pagamento efetuado com sucesso, você receberá um e-mail de confirmação");
+
+                setTimeout(() => {
+
+                    planService.deleteLocalStorage();
+
+                    navigate("/planos/checkout/payment_sucess");
+                }, 2000 );
+            } else {
+
+                toast.warn("Pagamento não concluído, por favor reveja os dados e tente novamente");
+
+            }
+
         }).catch((error) => {
-            console.log(error);
+
             setLoading(false);
             
         });
@@ -137,7 +168,8 @@ export const PlansCheckout = () => {
 
                 </div>
             </div>
-
+            
+            <ToastContainer/>
         </>
     );
 }
