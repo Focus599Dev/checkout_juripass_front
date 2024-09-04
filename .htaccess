@@ -1,4 +1,4 @@
-{# Copiar para pasta build apos o comando 'npm run build' #}
+# Copiar para pasta build apos o comando 'npm run build'
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /subdirectory
