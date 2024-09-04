@@ -70,7 +70,7 @@ export const PlansCheckout = () => {
         }).then((data) => {
             setLoading(false);
 
-            if (data.status == 202) {
+            if (data.status === 202) {
 
                 toast.success("Seu QR Code foi gerado com sucesso, você sera redirecionado para a tela de pagamento");
 
@@ -83,7 +83,7 @@ export const PlansCheckout = () => {
 
                 }, 2000 );
 
-            } else if (data.status == 201) {
+            } else if (data.status === 201) {
 
                 toast.success("Pagamento efetuado com sucesso, você receberá um e-mail de confirmação");
 

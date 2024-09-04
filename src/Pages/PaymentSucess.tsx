@@ -1,5 +1,3 @@
-
-
 export const PaymentSucess = () => {
     return (
         <>
@@ -40,43 +38,3 @@ function CheckIcon(props:any) {
       </svg>
     )
 }
-
-function Card(props:any) {
-    return (
-        <div
-            className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
-        >
-            {props.children}
-        </div>
-    )
-}
-
-function CardHeader(props:any) {
-    return (
-        <div className="flex items-center justify-between">
-            {props.children}
-        </div>
-    )
-}
-
-function CardTitle(props:any) {
-    return (
-        <h5
-            className="text-xl font-bold leading-none text-gray-900 dark:text-white"
-        >
-            {props.children}
-        </h5>
-    )
-}
-
-
-function CardContent(props:any) {
-    return (
-        <div
-            className="flow-root"
-        >
-            {props.children}
-        </div>
-    )
-}
-
