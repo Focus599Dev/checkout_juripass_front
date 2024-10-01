@@ -10,9 +10,12 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formatCpfCnpj } from "../Utils/Masks";
+import { formatTel } from "../Utils/Masks";
 import { ToastContainer, toast } from 'react-toastify';
 
 const planService = new PlansService();
+
+var dependent:any|null = null;
 
 export const PlansDetails = () => {
 
@@ -39,9 +42,48 @@ export const PlansDetails = () => {
           .refine((doc) => {
             const replacedDoc = doc.replace(/\D/g, '');
             return !!Number(replacedDoc);
-        }, 'CPF deve conter apenas números.'),
+        }, 'CPF deve conter apenas números.')
+        .refine((cpf) => {
+            
+            if (typeof cpf !== "string") return false
+
+            cpf = cpf.replace(/[\s.-]*/igm, '');
+
+            if (
+                !cpf ||
+                cpf.length !== 11 ||
+                cpf === "00000000000" ||
+                cpf === "11111111111" ||
+                cpf === "22222222222" ||
+                cpf === "33333333333" ||
+                cpf === "44444444444" ||
+                cpf === "55555555555" ||
+                cpf === "66666666666" ||
+                cpf === "77777777777" ||
+                cpf === "88888888888" ||
+                cpf === "99999999999" 
+            ) {
+                return false
+            }
+    
+            let soma = 0
+            let resto
+            for (let i = 1; i <= 9; i++) 
+                soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
+            resto = (soma * 10) % 11
+            if ((resto === 10) || (resto === 11))  resto = 0
+            if (resto !== parseInt(cpf.substring(9, 10)) ) return false
+            soma = 0
+            for (let i = 1; i <= 10; i++) 
+                soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
+            resto = (soma * 10) % 11
+            if ((resto === 10) || (resto === 11))  resto = 0
+            if (resto !== parseInt(cpf.substring(10, 11) ) ) return false
+            return true
+
+        },  'CPF inválido.'),
         email: z.string().email({ message: "Email inválido" }),
-        telefone: z.string().min(10, { message: "Telefone deve ter minimo 10 caracteres. Ex: (11) 12345-6789" }),
+        telefone: z.string().min(13, { message: "Telefone deve ter mínimo 13 caracteres. Ex: (11) 12345-6789" }),
     });
 
     type FormData = z.infer<typeof schema>;
@@ -64,6 +106,8 @@ export const PlansDetails = () => {
     }
 
     const showFormAddDependent = () => {
+
+        dependent = null;
 
         setIsFormDependent(true);
     }
@@ -97,13 +141,23 @@ export const PlansDetails = () => {
     }
 
     function onErrors(e: any) {
+        
+        document.querySelectorAll(".input-error").forEach((el: any) => {
+            el.classList.remove("input-error");
+        });
 
         for (let key in e) {
             toast.warn(e[key].message);
+            e[key].ref.classList.add("input-error");
         }
     }
 
-    const adicDependent = ( data : any) => {
+
+    const adicDependent = ( data : any, index: number | null) => {
+
+        document.querySelectorAll(".input-error").forEach((el: any) => {
+            el.classList.remove("input-error");
+        });
 
         if (planService.getDependentes().length >= 5) {
             
@@ -111,14 +165,29 @@ export const PlansDetails = () => {
            
             return false;
         }
+
+        if (index !== null) {
+
+            planService.editDependent(
+                index, 
+                data.dependent_name, 
+                data.dependent_email,
+                data.dependent_cpf,
+                data.dependent_telefone,
+                data.dependent_grau_parentesco
+            );
+
+        } else {
         
-        planService.addDependent(
-            data.dependent_name,
-            data.dependent_email, 
-            data.dependent_cpf, 
-            data.dependent_telefone, 
-            data.dependent_grau_parentesco, 
-        )
+            planService.addDependent(
+                data.dependent_name,
+                data.dependent_email, 
+                data.dependent_cpf, 
+                data.dependent_telefone, 
+                data.dependent_grau_parentesco, 
+            )
+
+        }
 
         setDependents(planService.getDependentes());
 
@@ -137,6 +206,21 @@ export const PlansDetails = () => {
         planService.saveLocalStorage();
 
     }
+
+    const EditDependent = (index: number) => {
+        try{
+            
+            dependent = dependents[index];
+
+            dependent.index = index;
+
+            setIsFormDependent(true);
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
 
     return (
         <>
@@ -163,7 +247,7 @@ export const PlansDetails = () => {
 
                     <div className="col-span-2">
                         <h3 className="text-center font-semibold text-lg mb-4">
-                            Queremos conhecer você melhor, diga nos algumas informações
+                            Queremos conhecer mais sobre você! Preencha seus dados abaixo
                         </h3>
                     </div>
 
@@ -177,7 +261,7 @@ export const PlansDetails = () => {
                             placeholder="Seu nome?"
                             type="text"
                             id="name"
-                            // value={planService.name}
+                            value={planService.name}
                             register={register}
                         />
 
@@ -185,7 +269,7 @@ export const PlansDetails = () => {
 
                     <div className="mb-6">
                         <h3 className="text-center font-semibold text-lg">
-                            Diga nos seu CPF?
+                            Diga-nos seu CPF
                         </h3>
 
                         <Input
@@ -193,7 +277,7 @@ export const PlansDetails = () => {
                             placeholder="Seu CPF?"
                             type="text"
                             id="cpf"
-                            // value={planService.cpf}
+                            value={planService.cpf}
                             mask={formatCpfCnpj}
                             register={register}
                         />
@@ -202,7 +286,7 @@ export const PlansDetails = () => {
 
                     <div className="mb-6">
                         <h3 className="text-center font-semibold text-lg">
-                            Escreva um email de contato
+                           Informe seu e-mail. 
                         </h3>
 
                         <Input
@@ -210,7 +294,7 @@ export const PlansDetails = () => {
                             placeholder="Email de contato?"
                             type="text"
                             id="email"
-                            // value={planService.email}
+                            value={planService.email}
                             register={register}
                         />
 
@@ -218,7 +302,7 @@ export const PlansDetails = () => {
 
                     <div className="mb-6">
                         <h3 className="text-center font-semibold text-lg">
-                            Escreva um telefone de contato
+                            Informe seu número de celular com whatsapp
                         </h3>
 
                         <Input
@@ -226,27 +310,25 @@ export const PlansDetails = () => {
                             placeholder="Telefone de contato?"
                             type="text"
                             id="telefone"
-                            // value={planService.telefone}
+                            value={planService.telefone}
                             register={register}
+                            mask={formatTel}
                         />
 
                     </div>
 
-                    <div className="w-full mb-6 col-span-2">
-                        <h3 className="text-center font-semibold text-lg mb-4">
-                            Caso precise , você pode adicionar dependentes.
-                        </h3>
-                    
+                    { planService.getIsAdditional() &&<div className="w-full mb-6 col-span-2">
+                        
                         <button className='textWhite bg-juripass text-white rounded-md p-2 flex w-full text-xl' onClick={showFormAddDependent}>
                             <svg xmlns="http://www.w3.org/2000/svg"x="0" y="0" width={20} height={24} id="chevron" className='relative pt-0.5 mr-3' fill='currentColor'><path d="M12.3,12.22A4.92,4.92,0,0,0,14,8.5a5,5,0,0,0-10,0,4.92,4.92,0,0,0,1.7,3.72A8,8,0,0,0,1,19.5a1,1,0,0,0,2,0,6,6,0,0,1,12,0,1,1,0,0,0,2,0A8,8,0,0,0,12.3,12.22ZM9,11.5a3,3,0,1,1,3-3A3,3,0,0,1,9,11.5Zm9.74.32A5,5,0,0,0,15,3.5a1,1,0,0,0,0,2,3,3,0,0,1,3,3,3,3,0,0,1-1.5,2.59,1,1,0,0,0-.5.84,1,1,0,0,0,.45.86l.39.26.13.07a7,7,0,0,1,4,6.38,1,1,0,0,0,2,0A9,9,0,0,0,18.74,11.82Z"></path></svg>
 
                             <span className='w-full text-center'>
-                                Adicionar dependente
+                                Adicionar Dependentes
                             </span>
                             
                         </button>
 
-                    </div>
+                    </div> }
 
                     
                     
@@ -262,6 +344,7 @@ export const PlansDetails = () => {
                         
                             <FormDependent 
                                 adicDependent={adicDependent}
+                                dependent={dependent}
                             />
                         </div>
                     }
@@ -281,6 +364,7 @@ export const PlansDetails = () => {
                                         parentesco={dependent.grau_parentesco}
                                         cpf={dependent.cpf}
                                         onRemoveDependent={RemoveDependent}
+                                        onEditDependent={EditDependent}
                                     />
 
                                 )
@@ -313,6 +397,8 @@ export const PlansDetails = () => {
                                 planId: planService.planId,
                                 benefits: planService.benefits
                             }}
+                            hasCoupon={planService.hasCupon()} 
+                            textCoupon={planService.planValueFormatedCoupon}
                             key={planService.planId}
                         />
                     </div>

@@ -1,6 +1,6 @@
 import PlanCardItemBenefit from "./PlanCardItemBenefit";
 
-export function PlanCard({plan,onClickSign}: any) {
+export function PlanCard({plan,onClickSign, hasCoupon, textCoupon}: any) {
 
     return (<div className="mt-6" key={plan.planId}>
 
@@ -14,13 +14,20 @@ export function PlanCard({plan,onClickSign}: any) {
                             { plan.planDesc }
                         </p>
 
-                        <p className="mb-6">
-
-                            <span className='text-[#111827] leading-6 text-4xl '>
-                                R$ { plan.planValueFormated }
-                            </span>
-
-                        </p>
+                        { hasCoupon ?
+                            <>
+                                <div className="font-boldtext-base mt-4 line-through">
+                                    {plan.planValueFormated}
+                                </div>
+                                <div className="font-bold text-2xl mt-4 mb-4">
+                                    {textCoupon}
+                                </div>
+                            </>
+                            :
+                            <div className="font-bold text-2xl mt-4 mb-4">
+                                {plan.planValueFormated}
+                            </div>
+                        }
 
                         { onClickSign && <button className='bg-juripass text-white rounded-md p-2 w-full mb-10' onClick={() => onClickSign(plan)}>
                             Assinar

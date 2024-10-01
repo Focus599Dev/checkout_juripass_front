@@ -1,4 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
+import planList from '../plans.json';
+import Coupons from '../coupons.json';
 
 export default class PlansService {
 
@@ -26,9 +27,22 @@ export default class PlansService {
 
     private uuidLocalStorage: any = '';
 
+    private planList = planList;
+
+    private isAdditional = false;
+
+    private coupon:string = '';
+
+    private couponType:string = '';
+
+    private couponDiscount:number = 0;
+
+    public planValueFormatedCoupon: any = '';
+
+
     public constructor(){
 
-        this.uuidLocalStorage = uuidv4();
+        this.uuidLocalStorage = this.planId;
 
     }
 
@@ -44,6 +58,23 @@ export default class PlansService {
         
     }
 
+    public editDependent = (index: number, name: any, email: any, cpf: any, telefone: any, grau_parentesco: any) => {
+
+        if ( this.dependentes[index] === undefined ) {
+
+            return false;
+        }
+
+        this.dependentes[index] = {
+            name: name,
+            email: email,
+            cpf: cpf,
+            telefone: telefone,
+            grau_parentesco: grau_parentesco
+        };
+        
+    }
+
     public getDependentes = () => {
         return this.dependentes;
     }
@@ -54,7 +85,7 @@ export default class PlansService {
 
     }
 
-    public setUUIDLocalStorage = (uuid: any) => this.uuidLocalStorage = uuid;
+    public setUUIDLocalStorage = (uuid: any) => this.uuidLocalStorage =  uuid;
     
     public getUUIDLocalStorage = () => {return this.uuidLocalStorage };
 
@@ -72,18 +103,35 @@ export default class PlansService {
 
         }
 
-    }
+        if (this.hasCupon()) {
 
-    public recoverLocalStorage = () => {
+            this.calculateDiscount(this.planValue);
 
-        const data = localStorage.getItem(this.getUUIDLocalStorage());
-
-        if(data){
-            this.mapperContextToClass(JSON.parse(data));
         }
     }
 
+    public recoverLocalStorage = () => {
+        
+        let extradata = localStorage.getItem(this.getUUIDLocalStorage());
+
+        let data = planList.find((plan: any) => { 
+            return plan.planId === this.getUUIDLocalStorage() ? plan : null
+        });
+
+        if(extradata){
+            this.mapperContextToClass(JSON.parse(extradata));
+        }
+
+        if(data){
+            this.mapperContextToClass(JSON.parse(JSON.stringify(data)));
+        }
+
+    }
+
     public saveLocalStorage = () => {
+
+        if (!this.getUUIDLocalStorage()) 
+            this.setUUIDLocalStorage(this.planId);
 
         localStorage.setItem(this.getUUIDLocalStorage(), JSON.stringify(this)); 
 
@@ -94,4 +142,90 @@ export default class PlansService {
         localStorage.removeItem(this.getUUIDLocalStorage());
 
     }
+
+    public getPlanList = () => this.planList;
+
+    public getIsAdditional = () => this.isAdditional;
+
+    public setCoupon = (coupon_code: string|null) => {
+        if (!coupon_code)
+            return false;
+
+        let coupon = Coupons.find((coupon: any) => { 
+            return coupon.code === coupon_code ? coupon : null
+        });
+
+        if (coupon) {
+
+            this.coupon = coupon.code;
+            
+            this.couponType = coupon.type;
+
+            this.couponDiscount = coupon.discount;
+            
+        }
+    }
+
+    public calculateDiscount = (planValue: number) => {
+
+        if(this.hasCupon()){
+
+            let discount = 0;
+
+            if (this.planValue){
+
+                planValue = this.planValue;
+            }
+
+            switch (this.couponType) {
+                case 'percent':
+                    discount = planValue - (planValue * this.couponDiscount / 100);
+                    break;
+                case 'value':
+                    discount =  planValue - this.couponDiscount;
+                    break;
+                default:
+                    break;
+            }
+
+            try {
+       
+                let discountFormated = this.formatBRL(discount);
+
+                let discountFormatedDiv = this.formatBRL((discount / 12));
+    
+                this.planValueFormatedCoupon = `12 x R$ ${ discountFormatedDiv } /mês ou R$ ${ discountFormated }`;
+
+            } catch(error) {
+                
+            }
+
+            return discount;
+
+        } 
+
+        return this.planValue; 
+
+    }
+
+    private formatBRL = function(value:number) {
+       
+        return value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+    }
+
+    public getCouponDiscount = (planValue: number) => {
+        
+        return this.calculateDiscount(planValue);
+
+    }
+
+    public hasCupon = () => {
+
+        if (!this.coupon)
+            return false;   
+
+        return true;
+    }
+
+
 }

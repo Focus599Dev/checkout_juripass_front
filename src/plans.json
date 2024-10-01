@@ -1,55 +1,31 @@
 [
     {
-        "planName": "Plano 1",
-        "planValue": 100.00,
-        "planValueFormated": "100,00",
-        "planDesc": "The essentials to provide your best work for clients.",
-        "planId": "cb5fcc70-308b-475f-bb1a-76a8a6b3c4a8",
+        "planName": "Plano individual",
+        "planValue": 299.00,
+        "planValueFormated": "12 x R$ 14,90 /mês ou R$ 299,00",
+        "planDesc": "",
+        "planId": "644232be-bf32-4ab5-a9df-16b7d43b6b7a",
+        "isAdditional": false,
         "benefits": [
-            "5 products",
-            "Up to 1,000 subscribers",
-            "Basic analytics",
-            "48-hour support response time"
+            "Cobertura individual",
+            "Contrato de 12 meses",
+            "Cobertura completa",
+            "Acesso via WhatsApp"
         ]
     },
     {
-        "planName": "Plano 2",
-        "planValue": 200.00,
-        "planValueFormated": "200,00",
-        "planDesc": "A plan that scales with your rapidly growing business.",
-        "planId": "e87ef1ec-38ba-4035-9a12-2116cd1c6d9f",
+        "planName": "Plano família",
+        "planValue": 499.00,
+        "planValueFormated": "12 x R$ 24,90 /mês ou R$ 499,00",
+        "planValueFormatedCoupon": "12 x R$ %s /mês ou R$ %s",
+        "planDesc": "",
+        "planId": "434b831d-686e-4333-8bd9-091deee491fb",
+        "isAdditional": true,
         "benefits": [
-            "10 products",
-            "Up to 2,000 subscribers",
-            "Basic analytics",
-            "48-hour support response time"
-        ]
-    },
-    {
-        "planName": "Plano 3",
-        "planValue": 300.00,
-        "planValueFormated": "300,00",
-        "planDesc": "Dedicated support and infrastructure for your company.",
-        "planId": "61a92621-656c-4bae-9cd0-53337c05fa78",
-        "benefits": [
-            "30 products",
-            "Up to 5,000 subscribers",
-            "Senior analytics",
-            "24-hour support response time"
-        ]
-    },
-    {
-        "planName": "Plano 4",
-        "planValue": 400.00,
-        "planValueFormated": "400,00",
-        "planDesc": "Dedicated support and infrastructure for your company growing up.",
-        "planId": "850f0de0-9917-46a4-b3ec-5f60940c96e3",
-        "benefits": [
-            "Unlimited products",
-            "Up to 20,000 subscribers",
-            "Senior analytics",
-            "24-hour support response time",
-            "Marketing automations"
+            "Cobertura para família",
+            "Contrato de 12 meses",
+            "Cobertura completa",
+            "Acesso via WhatsApp"
         ]
     }
 ]

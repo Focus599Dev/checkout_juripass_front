@@ -133,22 +133,6 @@ export const PlansCheckout = () => {
                     <div className='border-2 bg-white border-[#e5e7eb] border-solid p-4 rounded-3xl text-[#4b5563]'>
 
                         <h3 className='text-center font-semibold text-lg mb-4'>
-                            Formas de pagamento
-                        </h3>                 
-                        
-                        <Payment
-                            initialization={{ amount: planService.planValue }}
-                            customization={customization}
-                            locale="pt-BR"
-                            onRenderNextStep={() => console.log("onRenderNextStep")}
-                            onSubmit={handlePayment}
-                        />
-
-                    </div>
-
-                    <div className='border-2 bg-white border-[#e5e7eb] border-solid p-4 rounded-3xl text-[#4b5563]'>
-
-                        <h3 className='text-center font-semibold text-lg mb-4'>
                             Resumo do pedido
                         </h3>   
 
@@ -161,8 +145,64 @@ export const PlansCheckout = () => {
                                 planId: planService.planId,
                                 benefits: planService.benefits
                             }}
+                            hasCoupon={planService.hasCupon()} 
+                            textCoupon={planService.planValueFormatedCoupon}
                             key={planService.planId}
                         />              
+
+                    </div>
+
+                    <div className='border-2 bg-white border-[#e5e7eb] border-solid p-4 rounded-3xl text-[#4b5563]'>
+                        <h3 className='text-center font-semibold text-lg mb-4'>
+                            Dados informados
+                        </h3> 
+
+                        <p className='leading-6 mb-2'>
+                            <strong>Nome: </strong> { planService.name } <br/>
+                        </p>
+
+                        <p className='leading-6 mb-2'>
+                            <strong>CPF: </strong> { planService.cpf } <br/>
+                        </p>
+
+                        <p className='leading-6 mb-2'>
+                            <strong>Email: </strong> { planService.email } <br/>
+                        </p>
+
+                        <p className='leading-6 mb-2'>
+                            <strong>Telefone: </strong> { planService.telefone } <br/>
+                        </p>
+                        
+                        { planService.getDependentes().length > 0 && <>                            
+                                <h3 className='text-center font-semibold text-lg mb-4'>
+                                    Dependentes
+                                </h3> 
+
+                                { planService.getDependentes() && planService.getDependentes().map((dependent: any, index: number) => {
+
+                                    return (
+                                        <p key={index} className='leading-6 mb-2 border-b-4'>
+                                            <strong> Nome: </strong> { dependent.name } <br/>
+                                        </p>
+                                    )
+                                }) }
+                            </>
+                        }
+                    </div>
+
+                    <div className='border-2 bg-white border-[#e5e7eb] border-solid p-4 rounded-3xl text-[#4b5563]'>
+
+                        <h3 className='text-center font-semibold text-lg mb-4'>
+                            Formas de pagamento
+                        </h3>                 
+                        
+                        <Payment
+                            initialization={{ amount: planService.getCouponDiscount(planService.planValue) }}
+                            customization={customization}
+                            locale="pt-BR"
+                            onRenderNextStep={() => console.log("onRenderNextStep")}
+                            onSubmit={handlePayment}
+                        />
 
                     </div>
 
