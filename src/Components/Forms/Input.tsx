@@ -3,8 +3,7 @@ export default function Input(
 ) { 
 
     
-    let classAditional = ' peer bg-transparent w-full h-10 rounded-lg text-gray-700 placeholder:opacity-0 ring-2 px-2 ring-gray-500 focus:ring-sky-600 focus:outline-none focus:border-rose-600';
-
+    let classAditional = ' peer bg-transparent w-full h-10 rounded-lg text-gray-700 placeholder:opacity-0 ring-1 px-2 ring-gray-300 focus:ring-sky-600 focus:outline-none';
     function mask(cb : Function, el: any){
 
         if (typeof cb === 'function') {

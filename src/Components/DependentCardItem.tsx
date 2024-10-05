@@ -1,32 +1,66 @@
 export default function DependentCardItem({
-    name,
-    parentesco,
-    cpf,
-    id,
-    onRemoveDependent,
-    onEditDependent
-}: any){
+  name,
+  parentesco,
+  cpf,
+  id,
+  onRemoveDependent,
+  onEditDependent,
+}: any) {
+  return (
+    <div className="max-w-sm p-3 bg-[#edf4fc] rounded-lg">
+      <div className="flex justify-end mb-2 gap-4">
+        <button
+          className=""
+          onClick={() => {
+            onEditDependent(id);
+          }}
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M15.9374 2.32182C15.2861 1.67048 14.2301 1.67048 13.5787 2.32182L2.32054 13.58C2.00775 13.8928 1.83203 14.317 1.83203 14.7594V17.2493C1.83203 17.7559 2.24273 18.1666 2.74936 18.1666H5.23932C5.68167 18.1666 6.1059 17.9909 6.41869 17.6781L17.6769 6.41997C18.3282 5.76863 18.3282 4.71259 17.6769 4.06124L15.9374 2.32182ZM12.9596 5.29969L14.7581 3.50119L16.4975 5.24061L14.699 7.03911L12.9596 5.29969ZM11.8302 6.42905L3.49991 14.7594V16.4988H5.23932L13.5696 8.16847L11.8302 6.42905Z"
+              fill="#4A4C52"
+            />
+          </svg>
+        </button>
 
-    return (
-        <div className="max-w-sm p-3 bg-white border border-gray-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
-            
-            <button className='text-red absolute right-10 top-2' onClick={() => {onEditDependent(id)}}>
-                <svg x="0" y="0" width={24} height={24} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.8787 3.70705C17.0503 2.53547 18.9498 2.53548 20.1213 3.70705L20.2929 3.87862C21.4645 5.05019 21.4645 6.94969 20.2929 8.12126L18.5556 9.85857L8.70713 19.7071C8.57897 19.8352 8.41839 19.9261 8.24256 19.9701L4.24256 20.9701C3.90178 21.0553 3.54129 20.9554 3.29291 20.7071C3.04453 20.4587 2.94468 20.0982 3.02988 19.7574L4.02988 15.7574C4.07384 15.5816 4.16476 15.421 4.29291 15.2928L14.1989 5.38685L15.8787 3.70705ZM18.7071 5.12126C18.3166 4.73074 17.6834 4.73074 17.2929 5.12126L16.3068 6.10738L17.8622 7.72357L18.8787 6.70705C19.2692 6.31653 19.2692 5.68336 18.8787 5.29283L18.7071 5.12126ZM16.4477 9.13804L14.8923 7.52185L5.90299 16.5112L5.37439 18.6256L7.48877 18.097L16.4477 9.13804Z" fill="#000000"/>
-                </svg>
-            </button>
+        <button
+          className="text-[#cf0101]"
+          onClick={() => {
+            onRemoveDependent(id);
+          }}
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M5.5886 4.4107C5.26317 4.08527 4.73553 4.08527 4.41009 4.4107C4.08466 4.73614 4.08466 5.26378 4.41009 5.58922L8.82084 9.99996L4.41009 14.4107C4.08466 14.7361 4.08466 15.2638 4.41009 15.5892C4.73553 15.9147 5.26317 15.9147 5.5886 15.5892L9.99935 11.1785L14.4101 15.5892C14.7355 15.9147 15.2632 15.9147 15.5886 15.5892C15.914 15.2638 15.914 14.7361 15.5886 14.4107L11.1779 9.99996L15.5886 5.58922C15.914 5.26378 15.914 4.73614 15.5886 4.4107C15.2632 4.08527 14.7355 4.08527 14.4101 4.4107L9.99935 8.82145L5.5886 4.4107Z"
+              fill="#4A4C52"
+            />
+          </svg>
+        </button>
+      </div>
 
-            <button className='text-[#cf0101] absolute right-2 top-2' onClick={() => {onRemoveDependent(id)}}>
-                <svg x="0" y="0" width={20} height={24} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" />
-                </svg>
-            </button>
-
-            <a>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-700">{name}</h5>
-            </a>
-            <p className="mb-1 font-normal text-gray-700 dark:text-gray-400">Grau de parentesco: {parentesco}</p>
-            <p className="mb-1 font-normal text-gray-700 dark:text-gray-400">CPF: {cpf}</p>
-        </div>
-    )
+      <div>
+        <p className="mb-2 text font-semibold tracking-tight text-gray-700">
+          {name}
+        </p>
+        <p className="mb-1 text-gray-700">Parentesco: {parentesco}</p>
+        <p className="mb-1 text-gray-700">CPF: {cpf}</p>
+      </div>
+    </div>
+  );
 }

@@ -2,11 +2,11 @@ export default function Select(
     props: any
 ) { 
 
-    let classAditional = ' peer bg-transparent w-full h-10 rounded-lg text-gray-200 placeholder:opacity-0 ring-2 px-2 ring-gray-500 focus:ring-sky-600 focus:outline-none focus:border-rose-600';
+    let classAditional = ' peer bg-transparent w-full h-10 rounded-lg text-gray-500 placeholder:opacity-0 ring-2 px-2 ring-gray-500 focus:ring-sky-600 focus:outline-none focus:border-rose-600';
 
     let optionList = props.options.map((option: any) => {
         return (
-            <option value={option.value} key={option.value}>{option.name}</option>
+            <option className="text-gray-500" value={option.value} key={option.value}>{option.name}</option>
         )
     })
 
