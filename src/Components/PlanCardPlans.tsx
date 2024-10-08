@@ -8,10 +8,17 @@ export function PlanCardPlans({
 }: any) {
   return (
     <div
-      className="p-6 bg-white rounded-2xl border-[#CBCED6] border w-full md:ml-0 mx-auto mt-6 md:mt-0"
+      className="p-6 bg-white rounded-2xl border-[#CBCED6] border w-full md:ml-0 mx-auto mt-6 md:mt-0 relative overflow-hidden"
       key={plan.planId}
     >
-      <div className="text-4xl font-bold text-[#3F87CF]">{plan.planName}</div>
+      {hasCoupon && (
+        <div className="absolute bg-[#C52222] px-4 py-2 top-0 right-0 rounded-bl-xl">
+          <p className="text-white font-semibold text-lg">10% off</p>
+        </div>
+      )}
+      <div className="text-4xl font-bold text-[#3F87CF] mt-8">
+        {plan.planName}
+      </div>
 
       <div className="mt-8">
         <ul className="leading-9">
@@ -23,7 +30,7 @@ export function PlanCardPlans({
 
       {hasCoupon ? (
         <>
-          <div className="font-bold text-base mt-4 text-[#27335E] line-through">
+          <div className="text-base mt-4 text-[#C52222] line-through">
             {plan.planValueFormated}
           </div>
           <div className="text-2xl font-bold text-[#27335E] mt-4">
