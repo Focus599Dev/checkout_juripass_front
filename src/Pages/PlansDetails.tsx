@@ -312,6 +312,7 @@ export const PlansDetails = () => {
                     hasCoupon={planService.hasCupon()}
                     textCoupon={planService.planValueFormatedCoupon}
                     key={planService.planId}
+                    discount={planService.couponDiscount}
                   />
                 </div>
               </div>

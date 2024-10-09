@@ -1,12 +1,12 @@
 import PlanCardItemBenefit from "./PlanCardItemBenefit";
 
-export function PlanCard({ plan, onClickSign, hasCoupon, textCoupon }: any) {
+export function PlanCard({ plan, onClickSign, hasCoupon, textCoupon, discount }: any) {
   return (
     <div className="mt-6" key={plan.planId}>
       <div className="bg-white border border-[#CBCED6] border-solid p-8 rounded-2xl text-[#4b5563] relative overflow-hidden">
-        {hasCoupon && (
+        {hasCoupon && discount && (
           <div className="absolute bg-[#C52222] px-4 py-2 top-0 right-0 rounded-bl-xl">
-            <p className="text-white font-semibold text-lg">10% off</p>
+            <p className="text-white font-semibold text-lg">{discount.toFixed(0)}% off</p>
           </div>
         )}
 

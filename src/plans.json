@@ -1,8 +1,8 @@
 [
     {
         "planName": "Plano individual",
-        "planValue": 139.90,
-        "planValueFormated": "10 x R$ 15,90 /mês ou R$ 139,00",
+        "planValue": 139,
+        "planValueFormated": "R$ 139,00 à vista ou em até 10 vezes",
         "planDesc": "",
         "planId": "644232be-bf32-4ab5-a9df-16b7d43b6b7a",
         "isAdditional": false,
@@ -15,9 +15,9 @@
     },
     {
         "planName": "Plano família",
-        "planValue": 205.08,
-        "planValueFormated": "10 x R$ 20,90 /mês ou R$ 205,08",
-        "planValueFormatedCoupon": "12 x R$ %s /mês ou R$ %s",
+        "planValue": 199,
+        "planValueFormated": "R$ 199,00 à vista ou em até 10 vezes",
+        "planValueFormatedCoupon": "%s à vista ou em até 10 vezes",
         "planDesc": "",
         "planId": "434b831d-686e-4333-8bd9-091deee491fb",
         "isAdditional": true,

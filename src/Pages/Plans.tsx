@@ -20,12 +20,16 @@ export const Plans = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const planList = planService.getPlanList();
+  let planList = planService.getPlanList();
 
   const [searchParams] = useSearchParams();
 
   if (searchParams.has("coupon")) {
     planService.setCoupon(searchParams.get("coupon"));
+  }
+
+  if (planService.getCouponCode() === 'CORE50' ) {
+    planList = planList.filter(plan => plan.planName === 'Plano família');
   }
 
   const onClickSign = (plan: any) => {
@@ -69,6 +73,7 @@ export const Plans = () => {
           onClickSign={onClickSign}
           hasCoupon={true}
           textCoupon={planService.planValueFormatedCoupon}
+          discount={planService.couponDiscount}
         />
       );
     } else {
@@ -85,18 +90,22 @@ export const Plans = () => {
       <PageLoader isShow={loading} />
       <div>
         <header className="pt-12 pb-4">
-          <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center">
+          <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center border-b-2 mb-12">
             <div className="lg:w-1/2 lg:pr-8 text-center lg:text-left">
               <h1 className="text-6xl font-bold text-[#27335E]">
-                <span className="text-[#3F87CF]">Seu novo</span> benefício
-                jurídico
+                <span className="text-[#3F87CF]">Segurança jurídica</span> na
+                palma da sua mão
               </h1>
               <p className="text-lg text-gray-700 mt-8 mb-16">
-                A <strong>Juripass</strong> oferece acolhimento e amparo legal
-                para esclarecer dúvidas e demandas jurídicas, proporcionando
-                tranquilidade e segurança jurídica no seu dia a dia.
+                A <strong>Juripass</strong> traz para você e sua família um
+                acolhimento jurídico exclusivo, capaz de esclarecer suas dúvidas
+                e orientar suas demandas legais a qualquer hora. Garanta mais
+                tranquilidade e segurança no seu dia a dia!
               </p>
-              <a href="#planos" className="bg-[#3F87CF] text-white font-semibold text-lg shadow-lg py-4 px-6 rounded-xl hover:bg-[#27335E] transition duration-500 ease-in-out">
+              <a
+                href="#planos"
+                className="bg-[#3F87CF] text-white font-semibold text-lg shadow-lg py-4 px-6 rounded-xl hover:bg-[#27335E] transition duration-500 ease-in-out"
+              >
                 Escolha seu plano
               </a>
             </div>
@@ -107,23 +116,29 @@ export const Plans = () => {
           </div>
         </header>
 
+        {/* <div className="w-full h-[2px] bg-[#dfe6ec] my-12"></div> */}
+
         <section className="pt-4 pb-16">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-[#27335E]">
               <span className="text-[#3F87CF]">Como</span> funciona?
             </h2>
             <p className="text-gray-700 mt-4">
-              Atendimento ágil e descomplicado para representar e garantir seus
-              direitos em acordos, demandas judiciais ou extrajudiciais.
-              Cobertura para você e seus familiares, com acesso ilimitado a
-              advogados.
+              Atendimento rápido e simples para que você e sua família possam
+              acessar seus direitos, tanto em acordos quanto em demandas
+              judiciais e extrajudiciais. Nossos planos garantem orientação e
+              acesso ilimitado a advogados sempre que precisar.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 text-left">
               <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-6 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
-                <img src={mobileIcon} className="w-12 mb-4" alt="icone celular" />
+                <img
+                  src={mobileIcon}
+                  className="w-12 mb-4"
+                  alt="icone celular"
+                />
                 <h3 className="text-xl font-semibold text-white">
-                  Suporte Imediato
+                  Atendimento rápido
                 </h3>
                 <p className="text-gray-200 mt-2">
                   Esclareça suas dúvidas e receba orientação personalizada a
@@ -134,7 +149,7 @@ export const Plans = () => {
               <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-6 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
                 <img src={chatIcon} className="w-12 mb-4" alt="icone chat" />
                 <h3 className="text-xl font-semibold text-white">
-                  Orientação Jurídica
+                  Orientação humanizada
                 </h3>
                 <p className="text-gray-200 mt-2">
                   Um especialista fornecerá orientações personalizadas e, se
@@ -143,13 +158,17 @@ export const Plans = () => {
               </div>
 
               <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-6 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
-                <img src={handsIcon} className="w-12 mb-4" alt="icone aperto de mao" />
+                <img
+                  src={handsIcon}
+                  className="w-12 mb-4"
+                  alt="icone aperto de mao"
+                />
                 <h3 className="text-xl font-semibold text-white">
                   Honorários Justos
                 </h3>
                 <p className="text-gray-200 mt-2">
-                  Os honorários são negociados diretamente entre você e o
-                  advogado e só serão cobrados em caso de sucesso.
+                  Em caso de ação, os honorários são negociados diretamente
+                  entre você e o advogado e só serão cobrados em caso de sucesso
                 </p>
               </div>
             </div>
@@ -182,10 +201,6 @@ export const Plans = () => {
                       <li>
                         <BenefitIcon />
                         Suporte a diferentes especialistas
-                      </li>
-                      <li>
-                        <BenefitIcon />
-                        Custo acessível e apenas em ganhos de causa
                       </li>
                       <li>
                         <BenefitIcon />

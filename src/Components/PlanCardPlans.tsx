@@ -5,27 +5,20 @@ export function PlanCardPlans({
   onClickSign,
   hasCoupon,
   textCoupon,
+  discount,
 }: any) {
   return (
     <div
-      className="p-6 bg-white rounded-2xl border-[#CBCED6] border w-full md:ml-0 mx-auto mt-6 md:mt-0 relative overflow-hidden"
+      className="p-6 bg-white rounded-2xl border-[#CBCED6] border ml-auto mr-auto mt-6 md:mt-0 relative overflow-hidden"
       key={plan.planId}
     >
-      {hasCoupon && (
+      {hasCoupon && discount && (
         <div className="absolute bg-[#C52222] px-4 py-2 top-0 right-0 rounded-bl-xl">
-          <p className="text-white font-semibold text-lg">10% off</p>
+          <p className="text-white font-semibold text-lg">{discount.toFixed(0)}% off</p>
         </div>
       )}
       <div className="text-4xl font-bold text-[#3F87CF] mt-8">
         {plan.planName}
-      </div>
-
-      <div className="mt-8">
-        <ul className="leading-9">
-          {plan.benefits.map((benefit: any) => (
-            <li key={uuidv4()}>✓ {benefit}</li>
-          ))}
-        </ul>
       </div>
 
       {hasCoupon ? (
@@ -42,6 +35,14 @@ export function PlanCardPlans({
           {plan.planValueFormated}
         </div>
       )}
+
+      <div className="mt-4">
+        <ul className="leading-9">
+          {plan.benefits.map((benefit: any) => (
+            <li key={uuidv4()}>✓ {benefit}</li>
+          ))}
+        </ul>
+      </div>
 
       {onClickSign && (
         <button

@@ -35,7 +35,7 @@ export default class PlansService {
 
     private couponType:string = '';
 
-    private couponDiscount:number = 0;
+    public couponDiscount:number = 0;
 
     public planValueFormatedCoupon: any = '';
 
@@ -143,7 +143,14 @@ export default class PlansService {
 
     }
 
-    public getPlanList = () => this.planList;
+    public getPlanList = () => {
+        console.log('coupon', this.coupon, 'teste')
+        if (this.coupon === 'CORE50') {
+            return this.planList.filter((plan) => plan.planName === 'Plano família' )
+        } else {
+            return this.planList
+        }
+    };
 
     public getIsAdditional = () => this.isAdditional;
 
@@ -189,12 +196,13 @@ export default class PlansService {
             }
 
             try {
+                let roundedDiscount = Math.floor(discount)
        
-                let discountFormated = this.formatBRL(discount);
+                let discountFormated = this.formatBRL(roundedDiscount);
 
                 let discountFormatedDiv = this.formatBRL((discount / 12));
     
-                this.planValueFormatedCoupon = `12 x R$ ${ discountFormatedDiv } /mês ou R$ ${ discountFormated }`;
+                this.planValueFormatedCoupon = `${ discountFormated } à vista ou em até 10 vezes`;
 
             } catch(error) {
                 
@@ -227,5 +235,8 @@ export default class PlansService {
         return true;
     }
 
+    public getCouponCode = () => {
+        return this.coupon;
+    }
 
 }
