@@ -37,6 +37,10 @@ export default class PlansService {
 
     public couponDiscount:number = 0;
 
+    public couponFamilyDiscount:number = 0;
+
+    public couponIndividualDiscount:number = 0;
+
     public planValueFormatedCoupon: any = '';
 
 
@@ -105,7 +109,7 @@ export default class PlansService {
 
         if (this.hasCupon()) {
 
-            this.calculateDiscount(this.planValue);
+            this.calculateDiscount(this.planValue, this.planName);
 
         }
     }
@@ -144,7 +148,6 @@ export default class PlansService {
     }
 
     public getPlanList = () => {
-        console.log('coupon', this.coupon, 'teste')
         if (this.coupon === 'CORE50') {
             return this.planList.filter((plan) => plan.planName === 'Plano família' )
         } else {
@@ -168,12 +171,16 @@ export default class PlansService {
             
             this.couponType = coupon.type;
 
-            this.couponDiscount = coupon.discount;
+            this.couponDiscount = coupon.discountValue;
+
+            this.couponFamilyDiscount = coupon.familyDiscount;
+            
+            this.couponIndividualDiscount = coupon.individualDiscount;
             
         }
     }
 
-    public calculateDiscount = (planValue: number) => {
+    public calculateDiscount = (planValue: number, plansName: string) => {
 
         if(this.hasCupon()){
 
@@ -184,12 +191,20 @@ export default class PlansService {
                 planValue = this.planValue;
             }
 
+            let planDiscount = this.couponDiscount;
+
+            if (plansName === 'Plano individual') {
+                planDiscount = this.couponIndividualDiscount;
+            } else {
+                planDiscount = this.couponFamilyDiscount;
+            }
+
             switch (this.couponType) {
                 case 'percent':
-                    discount = planValue - (planValue * this.couponDiscount / 100);
+                    discount = planValue - (planValue * planDiscount / 100);
                     break;
                 case 'value':
-                    discount =  planValue - this.couponDiscount;
+                    discount =  planValue - planDiscount;
                     break;
                 default:
                     break;
@@ -221,9 +236,9 @@ export default class PlansService {
         return value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
     }
 
-    public getCouponDiscount = (planValue: number) => {
+    public getCouponDiscount = (planValue: number, planName: string) => {
         
-        return this.calculateDiscount(planValue);
+        return this.calculateDiscount(planValue, planName);
 
     }
 

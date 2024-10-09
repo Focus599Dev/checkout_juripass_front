@@ -50,7 +50,7 @@ export const Plans = () => {
     planService.mapperContextToClass(contextPlan);
 
     if (planService.hasCupon()) {
-      planService.calculateDiscount(plan.planValue);
+      planService.calculateDiscount(plan.planValue, plan.planName);
     }
 
     planService.saveLocalStorage();
@@ -64,7 +64,7 @@ export const Plans = () => {
 
   const PlansCard = planList.map((plan, key) => {
     if (planService.hasCupon()) {
-      planService.getCouponDiscount(plan.planValue);
+      planService.getCouponDiscount(plan.planValue, plan.planName);
 
       return (
         <PlanCardPlans
@@ -131,7 +131,7 @@ export const Plans = () => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 text-left">
-              <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-6 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
+              <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-3 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
                 <img
                   src={mobileIcon}
                   className="w-12 mb-4"
@@ -146,7 +146,7 @@ export const Plans = () => {
                 </p>
               </div>
 
-              <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-6 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
+              <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-3 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
                 <img src={chatIcon} className="w-12 mb-4" alt="icone chat" />
                 <h3 className="text-xl font-semibold text-white">
                   Orientação humanizada
@@ -157,7 +157,7 @@ export const Plans = () => {
                 </p>
               </div>
 
-              <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-6 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
+              <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-3 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
                 <img
                   src={handsIcon}
                   className="w-12 mb-4"

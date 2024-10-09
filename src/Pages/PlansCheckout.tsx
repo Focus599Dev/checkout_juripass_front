@@ -238,7 +238,7 @@ export const PlansCheckout = () => {
 
             <Payment
               initialization={{
-                amount: planService.getCouponDiscount(planService.planValue),
+                amount: planService.getCouponDiscount(planService.planValue, planService.planName),
               }}
               customization={customization}
               locale="pt-BR"

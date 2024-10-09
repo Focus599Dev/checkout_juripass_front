@@ -1,12 +1,16 @@
 [
     {
         "code": "JURI30",
-        "discount": 30,
-        "type": "percent"
+        "discountValue": 30,
+        "individualDiscount": 40,
+        "familyDiscount": 60,
+        "type": "value"
     },
     {
         "code": "CORE50",
-        "discount": 50,
-        "type": "percent"
+        "discountValue": 50,
+        "individualDiscount": 0,
+        "familyDiscount": 100,
+        "type": "value"
     }
 ]
