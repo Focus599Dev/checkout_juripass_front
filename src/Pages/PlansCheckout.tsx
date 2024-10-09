@@ -6,6 +6,7 @@ import { Payment, initMercadoPago } from "@mercadopago/sdk-react";
 import { PlanCard } from "../Components/PlanCard";
 import { ToastContainer, toast } from "react-toastify";
 import logoJuripass from "../assets/img/logo-juripass.png";
+import mercadoPagoLogo from "../assets/img/mercado-pago.jpg";
 
 const planService = new PlansService();
 
@@ -245,6 +246,10 @@ export const PlansCheckout = () => {
               onRenderNextStep={() => console.log("onRenderNextStep")}
               onSubmit={handlePayment}
             />
+
+            <p className="text-center text-gray-500 pl-4">
+              <img src={mercadoPagoLogo} className="h-6" alt="mercado pago" />
+            </p>
           </div>
         </div>
       </div>
