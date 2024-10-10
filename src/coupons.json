@@ -12,5 +12,12 @@
         "individualDiscount": 0,
         "familyDiscount": 100,
         "type": "value"
+    },
+    {
+        "code": "UBER30",
+        "discountValue": 30,
+        "individualDiscount": 40,
+        "familyDiscount": 60,
+        "type": "value"
     }
 ]
