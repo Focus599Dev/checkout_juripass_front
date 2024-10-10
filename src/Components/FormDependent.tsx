@@ -15,14 +15,19 @@ const schema = z.object({
   dependent_cpf: z
     .string()
     .refine((doc) => {
+      if (doc.length === 0) return true;
       const replacedDoc = doc.replace(/\D/g, "");
       return replacedDoc.length >= 11;
     }, "CPF deve conter no mínimo 11 caracteres.")
     .refine((doc) => {
+      if (doc.length === 0) return true;
       const replacedDoc = doc.replace(/\D/g, "");
       return !!Number(replacedDoc);
     }, "CPF deve conter apenas números.")
     .refine((cpf) => {
+      
+      if (cpf.length === 0) return true;
+
       if (typeof cpf !== "string") return false;
 
       cpf = cpf.replace(/[\s.-]*/gim, "");
@@ -59,12 +64,9 @@ const schema = z.object({
       if (resto !== parseInt(cpf.substring(10, 11))) return false;
       return true;
     }, "CPF inválido."),
-  // dependent_email: z.string().email({ message: "Email inválido" }),
+  dependent_email: z.string(),
   dependent_telefone: z
-    .string()
-    .min(10, {
-      message: "Telefone deve ter minimo 10 caracteres. Ex: (11) 12345-6789",
-    }),
+    .string(),
   dependent_grau_parentesco: z.string(),
 });
 
