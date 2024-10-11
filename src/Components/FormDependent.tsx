@@ -137,7 +137,7 @@ export default function FormDependent({ adicDependent, dependent }: any) {
         <div className="mb-4">
           <Input
             name="dependent_telefone"
-            placeholder="Celular (Whatsapp)"
+            placeholder="Celular (Whatsapp) (Opcional)"
             type="text"
             register={register}
             mask={formatTel}

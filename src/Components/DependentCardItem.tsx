@@ -59,7 +59,7 @@ export default function DependentCardItem({
           {name}
         </p>
         <p className="mb-1 text-gray-700">Parentesco: {parentesco}</p>
-        <p className="mb-1 text-gray-700">CPF: {cpf}</p>
+        {cpf && <p className="mb-1 text-gray-700">CPF: {cpf}</p>}
       </div>
     </div>
   );
