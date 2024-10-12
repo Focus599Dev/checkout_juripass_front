@@ -45,9 +45,7 @@ export const PaymentSuccess = () => {
               <span className="text-[#3F87CF]">Como</span> acessar?
             </h2>
             <p className="text-lg text-gray-700 mt-4 mb-4">
-              Para acessar você pode entrar em contato com o Whatsapp abaixo
-              clicando no <strong>link</strong> ou escaneando o{" "}
-              <strong>QR Code</strong>:
+              Para acessar entre em contato pelo WhatsApp clicando no <strong>link abaixo</strong> ou escaneando o <strong>QR Code</strong>:
             </p>
             <div className="flex justify-center mt-6">
               <div
