@@ -1,115 +1,115 @@
 
 import { useCallback, useState, useEffect } from 'react';
-
-interface PaymentItem {
-    name: string;
-}
-
-interface Payment extends Array<PaymentItem> {}
+import PageLoader from "../Components/PageLoader";
+import JSONPretty from 'react-json-pretty';
+import 'react-json-pretty/themes/monikai.css';
 
 export const PaymentsList = () => {
 
     const [reload, setReload] = useState(true);
 
-    var payments: Payment = [];
+    var payments: any = [];
 
-    const LIMIT = 2;
-
-    const [data, setData] = useState(Array<PaymentItem>());
+    const [loading, setLoading] = useState(false);
     
+    const [paymentsFiltered, setPaymentsFiltered] = useState<any>([]);
+    
+    var JSONPrettyMon = require('react-json-pretty/dist/monikai');
+
     const loadPayment = (params:any) => {
-        
-        console.log('Entra');
 
-        payments = [{
-            name: 'Teste 1',
-        }];
+        setLoading(true);
 
-        setData(
-           payments
+        fetch(process.env.REACT_APP_BACK_URL + "/list-payments")
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                
+                setLoading(false);
+
+                if (parseInt(data.status) === 200){
+                    payments = data.data;
+                }
+
+                filterPayment([]);
+
+            }).catch((error) => {
+                
+                setLoading(false);
+                
+                console.log(error);
+            }
         );
-        // fetch(process.env.REACT_APP_BACK_URL + "/payments")
-        //     .then((response) => {
-        //         return response.json();
-        //     })
-        //     .then((data) => {
-        //         console.log(data);
-        // });
-
     };
+
+    const filterPayment = (params:any) => {
+
+        setPaymentsFiltered(payments.filter((payment:any) => {
+                let isFiltered = true;
+
+                if (isFiltered)
+                    return true;
+                
+                return false;
+            })
+        );
+
+        return paymentsFiltered;
+    }
 
     useEffect(() => {
 
         loadPayment({
           offset: 0,
-          limit: LIMIT,
+          limit: 100,
         });
 
-    }, [reload,payments]);
+    }, []);
 
     return <>
+
+        <PageLoader isShow={loading} />
+
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
 
             <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" className="px-6 py-3">
-                            Product name
+                            Plano
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Color
+                            Valor
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Category
+                            Status
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Price
+                            Data
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Dados do plano
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className="bg-white border-b \ \">
-                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            Apple MacBook Pro 17"
-                        </th>
-                        <td className="px-6 py-4">
-                            Silver
-                        </td>
-                        <td className="px-6 py-4">
-                            Laptop
-                        </td>
-                        <td className="px-6 py-4">
-                            $2999
-                        </td>
-                    </tr>
-                    <tr className="bg-white border-b \ \">
-                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            Microsoft Surface Pro
-                        </th>
-                        <td className="px-6 py-4">
-                            White
-                        </td>
-                        <td className="px-6 py-4">
-                            Laptop PC
-                        </td>
-                        <td className="px-6 py-4">
-                            $1999
-                        </td>
-                    </tr>
-                    <tr className="bg-white \">
-                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            Magic Mouse 2
-                        </th>
-                        <td className="px-6 py-4">
-                            Black
-                        </td>
-                        <td className="px-6 py-4">
-                            Accessories
-                        </td>
-                        <td className="px-6 py-4">
-                            $99
-                        </td>
-                    </tr>
+
+                    {paymentsFiltered.map((payment:any) => {
+                        return (
+                            <tr className="bg-white border-b " key={payment.id}>
+                                <td className="px-6 py-4">{payment.request.servicePlan.planName}</td>
+                                <td className="px-6 py-4">{payment.amount}</td>
+                                <td className="px-6 py-4">{payment.status}</td>
+                                <td className="px-6 py-4">{payment.created_at}</td>
+                                <td className="px-6 py-4">
+                                    <div className="w-full h-[20rem] overflow-auto">
+                                        <JSONPretty theme={JSONPrettyMon} id="json-pretty" data={payment.request.servicePlan} />
+                                    </div>
+                                </td>
+                            </tr>
+                        );
+                    })}                   
                 </tbody>
             </table>
         </div>
