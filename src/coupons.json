@@ -19,5 +19,12 @@
         "individualDiscount": 40,
         "familyDiscount": 60,
         "type": "value"
+    },
+    {
+        "code": "INSTA10",
+        "discountValue": 10,
+        "individualDiscount": 13.9,
+        "familyDiscount": 19.9,
+        "type": "value"
     }
 ]
