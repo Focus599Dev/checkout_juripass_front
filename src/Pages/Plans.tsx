@@ -28,7 +28,7 @@ export const Plans = () => {
     planService.setCoupon(searchParams.get("coupon"));
   }
 
-  if (planService.getCouponCode() === 'CORE50' ) {
+  if (planService.getCouponCode() === 'ARCOSUL50' ) {
     planList = planList.filter(plan => plan.planName === 'Plano família');
   }
 
