@@ -23,7 +23,12 @@ export const Tutorial = () => {
           </div>
 
           <div className="lg:w-1/2 mt-8 lg:mt-0">
-            <img src={headerAsset} className="w-full" alt="home" loading="lazy" />
+            <img
+              src={headerAsset}
+              className="w-full"
+              alt="home"
+              loading="lazy"
+            />
           </div>
         </div>
       </header>
@@ -43,7 +48,12 @@ export const Tutorial = () => {
         </div>
 
         <div className="lg:w-1/2 mt-8 lg:mt-0">
-          <img src={tutorialAsset} className="w-full" alt="home" loading="lazy" />
+          <img
+            src={tutorialAsset}
+            className="w-full"
+            alt="home"
+            loading="lazy"
+          />
         </div>
       </section>
 
@@ -79,10 +89,13 @@ export const Tutorial = () => {
             WhatsApp.
           </p>
           <a
-            href="#planos"
+            href="https://wa.me/551150395554"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex flex-row items-center gap-2 bg-white text-[#3F87CF] font-semibold text-lg shadow-lg py-2 px-6 rounded-xl hover:bg-[#27335E] hover:text-white transition duration-500 ease-in-out"
           >
-            <img src={whatsappIcon} className="w-8" alt="icone" /> (11) 5039-5554
+            <img src={whatsappIcon} className="w-8" alt="icone" /> (11)
+            5039-5554
           </a>
         </div>
       </section>
