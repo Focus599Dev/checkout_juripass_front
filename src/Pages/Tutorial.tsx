@@ -62,16 +62,11 @@ export const Tutorial = () => {
           <span className="text-[#3F87CF]">O que é a</span> Juripass?
         </h2>
         <p className="text-gray-700 mt-4">
-          A Juripass oferece acolhimento legal e suporte jurídico para
-          esclarecer dúvidas e resolver demandas do dia a dia. Nosso objetivo é
-          garantir tranquilidade e segurança jurídica, com um atendimento
-          humanizado e descomplicado. Com a Juripass, você tem acesso a
-          advogados e especialistas que irão orientá-lo e ajudá-lo em suas
-          questões jurídicas. Além disso, contamos com representação
-          especializada para proteger seus direitos em acordos, ações judiciais
-          e procedimentos extrajudiciais. Oferecemos uma cobertura abrangente
-          para você e sua família, com acesso ilimitado a advogados
-          qualificados.
+          A Juripass oferece apoio jurídico descomplicado para esclarecer
+          dúvidas e resolver questões legais do dia a dia. Com atendimento ágil
+          e humanizado, conectamos você a advogados especializados para oferecer
+          orientações e soluções práticas. Nossa cobertura abrangente garante
+          acesso ilimitado a especialistas para você e sua família.
         </p>
       </section>
 
@@ -122,18 +117,13 @@ export const Tutorial = () => {
           <div className="border-2 rounded-2xl p-8 text-left flex flex-col gap-4">
             <img src={icon1} className="w-12" alt="icone" />
             <h3 className="text-xl font-bold text-[#27335E]">
-              Disparo de conteúdos
+              Conteúdo Educacional
             </h3>
             <p className="text-gray-700">
-              Os conteúdos educativos e curiosidades sobre questões jurídicas
-              serão disponibilizados de diversas formas: pelo{" "}
-              <span className="text-[#3F87CF] font-semibold">WhatsApp</span>,
-              por e-mail e também pela área de{" "}
-              <span className="text-[#3F87CF] font-semibold">
-                Recursos Humanos
-              </span>
-              , garantindo que você tenha acesso a essas informações de maneira
-              prática e conveniente.
+              Conteúdos educativos e curiosidades sobre questões jurídicas serão
+              disponibilizados de maneira prática e acessível, seja pelo
+              WhatsApp, por e-mail ou diretamente pela sua área de Recursos
+              Humanos.
             </p>
           </div>
           <div className="border-2 rounded-2xl p-8 text-left flex flex-col gap-4">

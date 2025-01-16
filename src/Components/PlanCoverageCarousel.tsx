@@ -108,14 +108,14 @@ const steps: Step[] = [
     ],
     icon: icon6,
   },
-  {
-    title: "O que não está incluso",
-    notIncluded: true,
-    subtitle: "Envio do material completo",
-    content: [
-      "Para questões relacionadas ao direito criminal, direito do trabalho e ao Código de Ética e Conduta, sugerimos que você procure o departamento de Recursos Humanos para esclarecer suas dúvidas e receber orientações apropriadas.",
-    ],
-  },
+  // {
+  //   title: "O que não está incluso",
+  //   notIncluded: true,
+  //   subtitle: "Envio do material completo",
+  //   content: [
+  //     "Para questões relacionadas ao direito criminal, direito do trabalho e ao Código de Ética e Conduta, sugerimos que você procure o departamento de Recursos Humanos para esclarecer suas dúvidas e receber orientações apropriadas.",
+  //   ],
+  // },
 ];
 
 export const PlanCoverageCarousel = () => {
