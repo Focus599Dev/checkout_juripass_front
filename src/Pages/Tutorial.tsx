@@ -136,6 +136,13 @@ export const Tutorial = () => {
               informações claras e práticas para ajudar você a aproveitar melhor
               o seu benefício. Faça o download e confira!
             </p>
+            <a
+              href="/manualativacao.pdf"
+              download="ManualAtivacao.pdf"
+              className="inline-flex items-center text-center gap-2 bg-[#3F87CF] text-white font-semibold shadow-lg py-2 px-6 rounded-xl hover:bg-[#27335E] transition duration-500 ease-in-out self"
+            >
+              Baixar Manual de Ativação
+            </a>
           </div>
           <div className="border-2 rounded-2xl p-8 text-left flex flex-col gap-4">
             <img src={icon3} className="w-12" alt="icone" />
