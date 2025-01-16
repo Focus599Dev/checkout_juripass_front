@@ -12,9 +12,9 @@ import { PlanCoverageCarousel } from "../Components/PlanCoverageCarousel";
 export const Tutorial = () => {
   return (
     <div className="flex flex-col gap-16">
-      <header className="bg-[#4288C8] rounded-2xl py-4">
-        <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center mb-12">
-          <div className="lg:w-1/2 lg:pr-8 flex flex-col text-center justify-center items-center lg:text-left gap-8">
+      <header className="bg-[#4288C8] rounded-2xl pt-4 md:pt-0">
+        <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center">
+          <div className="lg:w-2/3 lg:pr-8 flex flex-col text-center justify-center items-center lg:text-left gap-8">
             <img src={logo} className="w-2/3" alt="logo" />
             <h1 className="text-2xl text-center font-medium text-white">
               ACOLHIMENTO JURÍDICO <br />
