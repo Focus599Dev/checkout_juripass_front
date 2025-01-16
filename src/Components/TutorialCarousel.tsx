@@ -14,7 +14,7 @@ const steps: Step[] = [
   {
     image: step1,
     title: "Acesso rápido e descomplicado",
-    text: "Você acessa via WhatsApp. É Importante que você salve nosso canal de atendimento em seus contatos.",
+    text: "Nosso canal de atendimento é feito via WhatsApp, tanto por áudio ou mensagens de texto. Para agilizar o agendamento, importante que você salve nosso numero em seus contatos.",
   },
   {
     image: step2,
@@ -52,7 +52,7 @@ export const TutorialCarousel = () => {
   };
 
   return (
-    <div className="my-8 bg-[#253262] p-12 rounded-2xl">
+    <div className="my-8 bg-[#253262] p-0 md:p-12 rounded-2xl">
       <div className="flex flex-col md:flex-row rounded-xl overflow-hidden bg-white">
         <div className="flex w-full">
           <img className="w-full" src={steps[currentIndex].image} alt="Step" />
@@ -78,13 +78,13 @@ export const TutorialCarousel = () => {
             <div className="flex space-x-4">
               <button
                 onClick={prevStep}
-                className="w-12 h-12 bg-[#3F87CF] text-white rounded-full text-2xl flex justify-center items-center"
+                className="w-10 h-10 md:w-12 md:h-12 bg-[#3F87CF] text-white rounded-full text-2xl flex justify-center items-center"
               >
                 {"<"}
               </button>
               <button
                 onClick={nextStep}
-                className="w-12 h-12 bg-[#3F87CF] text-white rounded-full text-2xl flex justify-center items-center"
+                className="w-10 h-10 md:w-12 md:h-12 bg-[#3F87CF] text-white rounded-full text-2xl flex justify-center items-center"
               >
                 {">"}
               </button>

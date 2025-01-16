@@ -126,9 +126,14 @@ export const Tutorial = () => {
             </h3>
             <p className="text-gray-700">
               Os conteúdos educativos e curiosidades sobre questões jurídicas
-              serão disponibilizados de diversas formas: pelo WhatsApp, por
-              e-mail e também pela área de Recursos Humanos, garantindo que você
-              tenha acesso a essas informações de maneira prática e conveniente.
+              serão disponibilizados de diversas formas: pelo{" "}
+              <span className="text-[#3F87CF] font-semibold">WhatsApp</span>,
+              por e-mail e também pela área de{" "}
+              <span className="text-[#3F87CF] font-semibold">
+                Recursos Humanos
+              </span>
+              , garantindo que você tenha acesso a essas informações de maneira
+              prática e conveniente.
             </p>
           </div>
           <div className="border-2 rounded-2xl p-8 text-left flex flex-col gap-4">
@@ -152,6 +157,13 @@ export const Tutorial = () => {
               de uso e informações sobre seus direitos, de forma simples e
               fácil. Visite agora!
             </p>
+            <a
+              className="text-[#3F87CF] font-semibold underline"
+              href="https://www.juripass.com.br/blog"
+              target="_blank"
+            >
+              Clique aqui para acessar o Blog
+            </a>
           </div>
           <div className="border-2 rounded-2xl p-8 text-left flex flex-col gap-4">
             <img src={icon4} className="w-12" alt="icone" />
@@ -161,7 +173,8 @@ export const Tutorial = () => {
             <p className="text-gray-700">
               Se tiver alguma dúvida ou precisar de mais esclarecimentos, não
               hesite em nos contatar! Nosso e-mail de suporte é
-              suporte@juripass.com.br. Ficaremos felizes em ajudá-lo!
+              <span className="text-[#3F87CF]"> suporte@juripass.com.br</span>.
+              Ficaremos felizes em ajudá-lo!
             </p>
           </div>
         </div>

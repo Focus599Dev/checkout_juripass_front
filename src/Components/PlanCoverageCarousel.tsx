@@ -1,11 +1,18 @@
 import { useState } from "react";
 import logo from "../assets/img/juripass-dark.png";
+import icon1 from "../assets/img/tutorialpage/icons/iconsPlansCoverage/icon1.png";
+import icon2 from "../assets/img/tutorialpage/icons/iconsPlansCoverage/icon2.png";
+import icon3 from "../assets/img/tutorialpage/icons/iconsPlansCoverage/icon3.png";
+import icon4 from "../assets/img/tutorialpage/icons/iconsPlansCoverage/icon4.png";
+import icon5 from "../assets/img/tutorialpage/icons/iconsPlansCoverage/icon5.png";
+import icon6 from "../assets/img/tutorialpage/icons/iconsPlansCoverage/icon6.png";
 
 interface Step {
   title: string;
   subtitle?: string;
   content: string[];
   notIncluded?: boolean;
+  icon?: string;
 }
 
 const steps: Step[] = [
@@ -23,6 +30,7 @@ const steps: Step[] = [
       "Cobrança abusiva: Uso de métodos de cobrança excessivos ou ameaçadores.",
       "Atraso na entrega: Produtos ou serviços não são entregues no prazo acordado.",
     ],
+    icon: icon1,
   },
   {
     title: "Propriedade e moradia",
@@ -38,6 +46,7 @@ const steps: Step[] = [
       "Limitações ao direito de propriedade: Restrições legais que afetam o uso de propriedades, como zoneamento.",
       "Contratos de locação: Questões sobre cumprimento de contratos de aluguel e condições do imóvel.",
     ],
+    icon: icon2,
   },
   {
     title: "Divórcio e pensão",
@@ -53,6 +62,7 @@ const steps: Step[] = [
       "Questões emocionais: Impacto emocional e psicológico do divórcio.",
       "Pensão entre cônjuges: Questões sobre pensão ao cônjuge com menor capacidade financeira após o divórcio.",
     ],
+    icon: icon3,
   },
   {
     title: "Herança e sucessão",
@@ -68,6 +78,7 @@ const steps: Step[] = [
       "Planejamento patrimonial inadequado: Complicações devido à falta de um planejamento patrimonial claro e eficaz pelo falecido.",
       "Direito à legítima: Reivindicação da parte garantida por lei.",
     ],
+    icon: icon4,
   },
   {
     title: "Responsabilidade civil",
@@ -81,6 +92,7 @@ const steps: Step[] = [
       "Danos em propriedade: Disputas sobre responsabilidade por danos a propriedades, como incêndios ou inundações",
       "Responsabilidade de estabelecimentos comerciais: Ferimentos a clientes devido a condições inadequadas em comércios.",
     ],
+    icon: icon5,
   },
   {
     title: "Contratos",
@@ -94,6 +106,7 @@ const steps: Step[] = [
       "Contratos de prestação de serviços: Litígios sobre a execução, qualidade, prazos e remuneração dos serviços prestados.",
       "Cláusulas penais: Questões sobre a validade e aplicação de multas ou penalidades por descumprimento.",
     ],
+    icon: icon6,
   },
   {
     title: "O que não está incluso",
@@ -120,10 +133,10 @@ export const PlanCoverageCarousel = () => {
 
   return (
     <div className="my-8 p-8 bg-white rounded-xl shadow-md">
-      <div className="flex items-center gap-8">
+      <div className="gap-8 hidden lg:flex">
         <button
           onClick={prevStep}
-          className="w-12 h-12 flex justify-center items-center bg-[#3F87CF] text-white rounded-full text-2xl"
+          className="mt-2 w-14 h-12 flex justify-center items-center bg-[#3F87CF] text-white rounded-full text-2xl"
         >
           {"<"}
         </button>
@@ -172,10 +185,33 @@ export const PlanCoverageCarousel = () => {
 
         <button
           onClick={nextStep}
-          className="w-12 h-12 flex justify-center items-center bg-[#3F87CF] text-white rounded-full text-2xl"
+          className="mt-2 w-14 h-12 flex justify-center items-center bg-[#3F87CF] text-white rounded-full text-2xl"
         >
           {">"}
         </button>
+      </div>
+      <div className="flex-col gap-8 flex lg:hidden">
+        {steps.map((step, index) => {
+          if (step.notIncluded) {
+            return (
+              <div className="text-left space-y-4" key={index}>
+                <p className="font-semibold text-[#253262] text-xl">
+                  {step.title}
+                </p>
+                <p className="font-semibold text-[#253262]">{step.subtitle}</p>
+                <p className="">{step.content[0]}</p>
+              </div>
+            );
+          }
+          return (
+            <div className="flex" key={index}>
+              <img src={step.icon} className="w-16 h-16" />
+              <p className="pt-2 font-semibold text-[#253262] text-xl">
+                {step.title}
+              </p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
