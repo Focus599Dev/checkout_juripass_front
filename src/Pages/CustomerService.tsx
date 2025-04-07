@@ -7,14 +7,9 @@ import { PlanCoverageCarousel } from "../Components/PlanCoverageCarousel";
 import chatIcon from "../assets/icons/chat.png";
 import handsIcon from "../assets/icons/hands.png";
 import mobileIcon from "../assets/icons/mobile.png";
-import { useNavigate } from "react-router-dom";
+import { Footer } from "../Components/Footer";
 
-export const Tutorial = () => {
-  const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate("/cadastro");
-  };
+export const CustomerService = () => {
   return (
     <div className="flex flex-col gap-16">
       <section className="container mx-auto px-4 flex flex-col lg:flex-row items-center">
@@ -30,11 +25,12 @@ export const Tutorial = () => {
             novo benefício jurídico!
           </p>
           <a
-            href="#"
-            onClick={() => handleNavigate()}
-            className="cursor-pointer inline-flex flex-row items-center gap-2 bg-[#3F87CF] text-white font-semibold text-lg shadow-lg py-4 px-6 rounded-xl hover:bg-[#27335E] hover:text-white transition duration-500 ease-in-out"
+            href="https://wa.me/551150395554"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex flex-row items-center gap-2 bg-[#3F87CF] text-white font-semibold text-lg shadow-lg py-4 px-6 rounded-xl hover:bg-[#27335E] hover:text-white transition duration-500 ease-in-out"
           >
-            Cadastre-se agora
+            Iniciar novo atendimento
           </a>
         </div>
 
@@ -191,18 +187,7 @@ export const Tutorial = () => {
         </div>
       </section>
 
-      <footer className="border-t mt-16 py-8 text-center">
-        <p className="text-gray-700">
-          Alameda Rio Negro 1030 sala 2304 - Alphaville, Barueri - SP -
-          06454-000
-        </p>
-        <p className="text-gray-700">
-          Juripass Desenvolvimento de Software LTDA - CNPJ 53.971.772/0001-37
-        </p>
-        <p className="text-gray-700">
-          © 2024 Juripass. Todos os direitos reservados.
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };

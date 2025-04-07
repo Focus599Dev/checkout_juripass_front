@@ -30,6 +30,9 @@ export default function Input(
                     onChange={ (e) => { 
                             if (typeof props?.mask === 'function')
                                 e.target.value = mask(props?.mask, e.target.value)
+                            if (props.onChange) {
+                                props.onChange(e);
+                            }
                         } 
                     }
                     defaultValue={props?.value}
