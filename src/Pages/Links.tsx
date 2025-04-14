@@ -25,7 +25,7 @@ export const Links = () => {
             />
             Iniciar Novo Atendimento
           </a>
-          <a
+          <button
             onClick={() => navigate("/cadastro")}
             className="cursor-pointer flex items-center justify-start gap-3 bg-[#3F87CF] text-white px-3 py-3 rounded-lg font-medium shadow hover:opacity-90 transition"
           >
@@ -35,8 +35,8 @@ export const Links = () => {
               alt="Quero Me Cadastrar"
             />
             Quero Me Cadastrar
-          </a>
-          <a
+          </button>
+          <button
             onClick={() => navigate("/cadastro/dependentes")}
             className="cursor-pointer flex items-center justify-start gap-3 bg-[#3F87CF] text-white px-3 py-3 rounded-lg font-medium shadow hover:opacity-90 transition"
           >
@@ -46,8 +46,8 @@ export const Links = () => {
               alt="Cadastrar Dependentes"
             />
             Cadastrar Dependentes
-          </a>
-          <a
+          </button>
+          <button
             onClick={() => navigate("/carteirinha")}
             className="cursor-pointer flex items-center justify-start gap-3 bg-[#3F87CF] text-white px-3 py-3 rounded-lg font-medium shadow hover:opacity-90 transition"
           >
@@ -57,8 +57,8 @@ export const Links = () => {
               alt="Minha Carteirinha Juripass"
             />
             Minha Carteirinha Juripass
-          </a>
-          <a
+          </button>
+          <button
             onClick={() => navigate("/tutorial")}
             className="cursor-pointer flex items-center justify-start gap-3 bg-[#3F87CF] text-white px-3 py-3 rounded-lg font-medium shadow hover:opacity-90 transition"
           >
@@ -68,7 +68,7 @@ export const Links = () => {
               alt="Dúvidas e Orientações"
             />
             Dúvidas e Orientações
-          </a>
+          </button>
         </div>
       </div>
 

@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Input from "../Input";
 import { formatCpfCnpj, formatTel } from "../../../Utils/Masks";
 import { cpfSchema } from "../../../Validators/cpfValidator";
+import InputV2 from "../InputV2";
 
 const schema = z.object({
   cpf: cpfSchema,
@@ -52,7 +52,7 @@ export function FormDependent({
       <div className="flex flex-col gap-4 border border-[#CBCED6] p-4 rounded-2xl">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col md:flex-row gap-4">
-            <Input
+            <InputV2
               name="beneficiaryCpf"
               placeholder="CPF do beneficiário"
               type="text"
@@ -60,7 +60,7 @@ export function FormDependent({
               mask={formatCpfCnpj}
               error={errors.beneficiaryCpf?.message}
             />
-            <Input
+            <InputV2
               name="beneficiaryName"
               placeholder="Nome do beneficiário"
               type="text"
@@ -73,7 +73,7 @@ export function FormDependent({
               error={errors.beneficiaryName?.message}
             />
           </div>
-          <Input
+          <InputV2
             name="organization"
             placeholder="Organização do beneficiário"
             type="text"
@@ -90,7 +90,7 @@ export function FormDependent({
 
       <div className="flex flex-col gap-4 border border-[#CBCED6] p-4 rounded-2xl">
         <div className="flex flex-col md:flex-row gap-4">
-          <Input
+          <InputV2
             name="cpf"
             placeholder="CPF do dependente"
             type="text"
@@ -98,7 +98,7 @@ export function FormDependent({
             mask={formatCpfCnpj}
             error={errors.cpf?.message}
           />
-          <Input
+          <InputV2
             name="name"
             placeholder="Nome do dependente"
             type="text"
@@ -120,20 +120,20 @@ export function FormDependent({
           <option value="outro">Outro</option>
         </select>
         {errors.grauParentesco && (
-          <span className="text-red-500 text-sm">
+          <span className="text-red-500 text-xs">
             {errors.grauParentesco.message}
           </span>
         )}
 
         <div className="flex flex-col md:flex-row gap-4">
-          <Input
+          <InputV2
             name="email"
             placeholder="E-mail do dependente"
             type="text"
             register={register}
             error={errors.email?.message}
           />
-          <Input
+          <InputV2
             name="telefone"
             placeholder="Celular do dependente"
             type="text"

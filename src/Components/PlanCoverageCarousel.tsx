@@ -205,7 +205,7 @@ export const PlanCoverageCarousel = () => {
           }
           return (
             <div className="flex" key={index}>
-              <img src={step.icon} className="w-16 h-16" />
+              <img src={step.icon} className="w-16 h-16" alt="cobertura plano" />
               <p className="pt-2 font-semibold text-[#253262] text-xl">
                 {step.title}
               </p>

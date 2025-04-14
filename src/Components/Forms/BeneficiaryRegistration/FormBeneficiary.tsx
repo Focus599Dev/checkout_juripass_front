@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Input from "../Input";
 import { formatCpfCnpj, formatTel } from "../../../Utils/Masks";
 import { cpfSchema } from "../../../Validators/cpfValidator";
+import InputV2 from "../InputV2";
 
 export const schema = z.object({
   name: z.string().min(5, { message: "Nome deve ter pelo menos 5 caracteres" }),
@@ -48,7 +48,7 @@ export function FormBeneficiary({
       className="flex flex-col gap-4 border border-[#CBCED6] p-4 rounded-2xl"
     >
       <div className="flex flex-col md:flex-row gap-4">
-        <Input
+        <InputV2
           name="cpf"
           placeholder="CPF"
           type="text"
@@ -56,7 +56,7 @@ export function FormBeneficiary({
           register={register}
           error={errors.cpf?.message}
         />
-        <Input
+        <InputV2
           name="name"
           placeholder="Nome completo"
           type="text"
@@ -69,7 +69,7 @@ export function FormBeneficiary({
           error={errors.name?.message}
         />
       </div>
-      <Input
+      <InputV2
         name="organization"
         placeholder="Organização"
         type="text"
@@ -82,14 +82,14 @@ export function FormBeneficiary({
         error={errors.organization?.message}
       />
       <div className="flex flex-col md:flex-row gap-4">
-        <Input
+        <InputV2
           name="email"
           placeholder="Email"
           type="email"
           register={register}
           error={errors.email?.message}
         />
-        <Input
+        <InputV2
           name="telefone"
           placeholder="Telefone de contato"
           type="text"

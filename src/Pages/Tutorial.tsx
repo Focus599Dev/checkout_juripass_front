@@ -29,13 +29,12 @@ export const Tutorial = () => {
             problemas jurídicos do dia a dia. Agora você tem. Bem-vindo ao seu
             novo benefício jurídico!
           </p>
-          <a
-            href="#"
+          <button
             onClick={() => handleNavigate()}
             className="cursor-pointer inline-flex flex-row items-center gap-2 bg-[#3F87CF] text-white font-semibold text-lg shadow-lg py-4 px-6 rounded-xl hover:bg-[#27335E] hover:text-white transition duration-500 ease-in-out"
           >
             Cadastre-se agora
-          </a>
+          </button>
         </div>
 
         <div className="lg:w-1/2 mt-8 lg:mt-0">
@@ -75,7 +74,7 @@ export const Tutorial = () => {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 text-left">
-            <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-3 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
+            <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border cursor-default hover:bg-[#3F87CF] transition duration-500 ease-in-out">
               <img src={mobileIcon} className="w-12 mb-4" alt="icone celular" />
               <h3 className="text-xl font-semibold text-white">
                 Atendimento rápido
@@ -86,7 +85,7 @@ export const Tutorial = () => {
               </p>
             </div>
 
-            <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-3 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
+            <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border cursor-default hover:bg-[#3F87CF] transition duration-500 ease-in-out">
               <img src={chatIcon} className="w-12 mb-4" alt="icone chat" />
               <h3 className="text-xl font-semibold text-white">
                 Orientação humanizada
@@ -97,7 +96,7 @@ export const Tutorial = () => {
               </p>
             </div>
 
-            <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border hover:rotate-3 hover:bg-[#3F87CF] transition duration-500 ease-in-out">
+            <div className="p-6 bg-[#27335E] rounded-2xl border-[#CBCED6] border cursor-default hover:bg-[#3F87CF] transition duration-500 ease-in-out">
               <img
                 src={handsIcon}
                 className="w-12 mb-4"
@@ -146,7 +145,7 @@ export const Tutorial = () => {
             <a
               href="/manualativacao.pdf"
               download="ManualAtivacao.pdf"
-              className="w-fit inline-flex flex-row items-center gap-2 bg-[#3F87CF] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#27335E] hover:text-white transition duration-500 ease-in-out"
+              className="text-center flex-row items-center gap-2 bg-[#3F87CF] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#27335E] hover:text-white transition duration-500 ease-in-out"
             >
               Baixar Manual de Ativação
             </a>
@@ -165,7 +164,7 @@ export const Tutorial = () => {
               href="https://www.juripass.com.br/blog"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-fit inline-flex flex-row items-center gap-2 bg-[#3F87CF] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#27335E] hover:text-white transition duration-500 ease-in-out"
+              className="text-center flex-row items-center gap-2 bg-[#3F87CF] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#27335E] hover:text-white transition duration-500 ease-in-out"
             >
               Acessar blog
             </a>
@@ -177,13 +176,11 @@ export const Tutorial = () => {
             </h3>
             <p className="text-gray-700">
               Se tiver alguma dúvida ou precisar de mais esclarecimentos, não
-              hesite em nos contatar! Nosso e-mail de suporte é{" "}
-              <span className="text-[#3F87CF]"> suporte@juripass.com.br</span>.
-              Ficaremos felizes em ajudá-lo!
+              hesite em nos contatar! Ficaremos felizes em ajudá-lo!
             </p>
             <a
               href="mailto:suporte@juripass.com.br"
-              className="w-fit inline-flex flex-row items-center gap-2 bg-[#3F87CF] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#27335E] hover:text-white transition duration-500 ease-in-out"
+              className="text-center flex-row items-center gap-2 bg-[#3F87CF] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#27335E] hover:text-white transition duration-500 ease-in-out"
             >
               E-mail suporte
             </a>

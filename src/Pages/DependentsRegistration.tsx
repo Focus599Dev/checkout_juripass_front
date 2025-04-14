@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import RegisterService from "../Services/RegisterService";
-import Input from "../Components/Forms/Input";
 import { z } from "zod";
 import { cpfSchema } from "../Validators/cpfValidator";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formatCpfCnpj, formatTel } from "../Utils/Masks";
 import { Footer } from "../Components/Footer";
+import InputV2 from "../Components/Forms/InputV2";
 
 const registerService = new RegisterService();
 
@@ -179,21 +179,21 @@ export default function DependentsRegistration() {
             </DialogTitle>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-              <Input
+              <InputV2
                 className="w-full border rounded px-3 py-2 text-sm"
                 placeholder="Nome completo"
                 name="name"
                 register={register}
                 error={errors.name?.message}
               />
-              <Input
+              <InputV2
                 className="w-full border rounded px-3 py-2 text-sm"
                 placeholder="E-mail"
                 name="email"
                 register={register}
                 error={errors.email?.message}
               />
-              <Input
+              <InputV2
                 className="w-full border rounded px-3 py-2 text-sm"
                 placeholder="CPF"
                 name="cpf"
@@ -201,7 +201,7 @@ export default function DependentsRegistration() {
                 mask={formatCpfCnpj}
                 error={errors.cpf?.message}
               />
-              <Input
+              <InputV2
                 className="w-full border rounded px-3 py-2 text-sm"
                 placeholder="Telefone"
                 name="telefone"
